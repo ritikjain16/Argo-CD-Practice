@@ -5,7 +5,7 @@ metadata:
   name: app2           # Name of this ArgoCD application
   namespace: argocd                # Must be created in the 'argocd' namespace
 spec:
-  project: custom-rj-project                 # ArgoCD Project (logical grouping of apps)
+  project: default                 # ArgoCD Project (logical grouping of apps)
   source:
     repoURL: https://github.com/ritikjain16/Argo-CD-Practice.git   # Git repo containing manifests
     targetRevision: master           # Git branch or tag (e.g., main, dev, release-1.0)
