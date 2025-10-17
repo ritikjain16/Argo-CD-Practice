@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ui-approach-deployment
+  labels:
+    app: ui-approach-app
+  namespace: ui-approach
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: ui-approach-app
+  template:
+    metadata:
+      labels:
+        app: ui-approach-app
+
+    spec:
+      containers:
+        - name: ui-approach-container
+          image: rj1608/ui-approach:v1
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 80
+          env:
+            - name: "PORT"
+              value: "5000"

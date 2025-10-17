@@ -1,0 +1,14 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: ui-approach-service
+  namespace: ui-approach
+spec:
+  selector:
+    app: ui-approach-app
+  type: NodePort
+  ports:
+    - protocol: TCP
+      port: 5000
+      targetPort: 5000
+      nodePort: 31001
