@@ -18,7 +18,7 @@ spec:
     spec:
       containers:
         - name: dec-approach-container
-          image: rj1608/ui-approach:v1
+          image: rj1608/ui-approachh:v1
           imagePullPolicy: Always
           ports:
             - containerPort: 80
