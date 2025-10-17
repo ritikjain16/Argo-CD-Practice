@@ -1,0 +1,14 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: cli-approach-service
+  namespace: cli-approach
+spec:
+  selector:
+    app: cli-approach-app
+  type: NodePort
+  ports:
+    - protocol: TCP
+      port: 5000
+      targetPort: 5000
+      nodePort: 31002

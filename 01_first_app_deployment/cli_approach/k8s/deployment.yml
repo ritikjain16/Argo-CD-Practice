@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cli-approach-deployment
+  labels:
+    app: cli-approach-app
+  namespace: cli-approach
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: cli-approach-app
+  template:
+    metadata:
+      labels:
+        app: cli-approach-app
+
+    spec:
+      containers:
+        - name: cli-approach-container
+          image: rj1608/cli-approach:v1
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 80
+          env:
+            - name: "PORT"
+              value: "5000"
