@@ -6,7 +6,7 @@ metadata:
     app: ui-approach-app
   namespace: ui-approach
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
       app: ui-approach-app
