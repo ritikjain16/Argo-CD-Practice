@@ -1,0 +1,21 @@
+
+apiVersion: argoproj.io/v1alpha1   # API group for ArgoCD resources
+kind: Application                  # Resource type is "Application"
+metadata:
+  name: app2           # Name of this ArgoCD application
+  namespace: argocd                # Must be created in the 'argocd' namespace
+spec:
+  project: default                 # ArgoCD Project (logical grouping of apps)
+  source:
+    repoURL: https://github.com/ritikjain16/Argo-CD-Practice.git   # Git repo containing manifests
+    targetRevision: master           # Git branch or tag (e.g., main, dev, release-1.0)
+    path: 01_first_app_deployment/declarative_approach/k8s   # Path inside repo where manifests live
+  destination:
+    server: https://EA8AC60792985022739F9A6D1EBC7715.gr7.us-west-2.eks.amazonaws.com   # Target cluster API
+    # namespace: dec-approach           # Namespace in which to deploy the app
+  syncPolicy:                      # Defines how ArgoCD syncs the app
+    automated:                     # Enable auto-sync
+      prune: true                  # Delete resources removed from Git
+      selfHeal: true               # Fix drift if resources are changed manually
+    syncOptions:                   # Additional sync options
+      - CreateNamespace=true       # Auto-create namespace if it doesn't exist

@@ -1,0 +1,36 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: demo-list
+  namespace: argocd
+spec:
+  # The list generator lets you enumerate a static set of elements (apps).
+  generators:
+    - list:
+        elements:
+          - app: app12
+            path: 02_argocd_features/applicationsets/app12     # path in repo for this app
+          - app: app13
+            path: 02_argocd_features/applicationsets/app13   # path in repo for this app
+          - app: app14
+            path: 02_argocd_features/applicationsets/app14      # path in repo for this app
+  # Template that will be used to generate individual Application CRs
+  template:
+    metadata:
+      # name template uses the element key 'app'
+      name: '{{app}}-list'
+    spec:
+      project: default
+      source:
+        repoURL: https://github.com/ritikjain16/Argo-CD-Practice.git
+        targetRevision: main
+        path: '{{path}}'                # resolved from element
+      destination:
+        server: https://EA8AC60792985022739F9A6D1EBC7715.gr7.us-west-2.eks.amazonaws.com
+        # namespace: default
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true
+        syncOptions:                   # Additional sync options
+          - CreateNamespace=true       # Auto-create namespace if it doesn't exist
