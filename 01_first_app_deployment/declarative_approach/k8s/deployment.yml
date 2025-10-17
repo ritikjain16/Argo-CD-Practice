@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: dec-approach-deployment
+  labels:
+    app: dec-approach-app
+  namespace: dec-approach
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: dec-approach-app
+  template:
+    metadata:
+      labels:
+        app: dec-approach-app
+
+    spec:
+      containers:
+        - name: dec-approach-container
+          image: rj1608/ui-approach:v1
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 80
+          env:
+            - name: "PORT"
+              value: "5000"
