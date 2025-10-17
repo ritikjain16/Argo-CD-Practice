@@ -6,7 +6,7 @@ metadata:
     app: dec-approach-app
   namespace: dec-approach
 spec:
-  replicas: 1
+  replicas: 2
   selector:
     matchLabels:
       app: dec-approach-app
