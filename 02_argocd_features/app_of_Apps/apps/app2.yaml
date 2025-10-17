@@ -3,7 +3,7 @@ apiVersion: argoproj.io/v1alpha1   # API group for ArgoCD resources
 kind: Application                  # Resource type is "Application"
 metadata:
   name: app2           # Name of this ArgoCD application
-  namespace: argocd                # Must be created in the 'argocd' namespace
+  namespace: dec-approach                # Must be created in the 'argocd' namespace
 spec:
   project: custom-rj-project                 # ArgoCD Project (logical grouping of apps)
   source:
