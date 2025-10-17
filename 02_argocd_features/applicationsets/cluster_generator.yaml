@@ -16,7 +16,7 @@ spec:
       source:
         repoURL: https://github.com/ritikjain16/Argo-CD-Practice.git
         targetRevision: master
-        path: applicationsets/app12    # same app deployed to all clusters
+        path: 02_argocd_features/applicationsets/app14    # same app deployed to all clusters
       destination:
         # destination.server will be filled with '{{server}}' for each cluster entry generated
         server: '{{server}}'
