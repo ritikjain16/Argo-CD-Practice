@@ -9,11 +9,14 @@ spec:
     - list:
         elements:
           - app: app12
-            path: 02_argocd_features/applicationsets/app12     # path in repo for this app
+            # path: 02_argocd_features/applicationsets/app12     # path in repo for this app
+            path: 00_apps_to_deploy/app1/k8s     # path in repo for this app
           - app: app13
-            path: 02_argocd_features/applicationsets/app13   # path in repo for this app
+            # path: 02_argocd_features/applicationsets/app13   # path in repo for this app
+            path: 00_apps_to_deploy/app2/k8s   # path in repo for this app
           - app: app14
-            path: 02_argocd_features/applicationsets/app14      # path in repo for this app
+            # path: 02_argocd_features/applicationsets/app14      # path in repo for this app
+            path: 00_apps_to_deploy/app3/k8s      # path in repo for this app
   # Template that will be used to generate individual Application CRs
   template:
     metadata:
