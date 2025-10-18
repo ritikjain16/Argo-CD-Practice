@@ -1,0 +1,14 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: app3-service
+  namespace: app3-namespace
+spec:
+  selector:
+    app: app3-app
+  type: NodePort
+  ports:
+    - protocol: TCP
+      port: 5000
+      targetPort: 5000
+      nodePort: 31103

@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: app1-deployment
+  labels:
+    app: app1-app
+  namespace: app1-namespace
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: app1-app
+  template:
+    metadata:
+      labels:
+        app: app1-app
+
+    spec:
+      containers:
+        - name: app1-container
+          image: rj1608/ui-approach:v1
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 80
+          env:
+            - name: "PORT"
+              value: "5000"

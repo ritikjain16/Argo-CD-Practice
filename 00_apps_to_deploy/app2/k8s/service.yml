@@ -1,0 +1,14 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: app2-service
+  namespace: app2-namespace
+spec:
+  selector:
+    app: app2-app
+  type: NodePort
+  ports:
+    - protocol: TCP
+      port: 5000
+      targetPort: 5000
+      nodePort: 31102
