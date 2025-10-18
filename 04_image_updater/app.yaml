@@ -1,0 +1,32 @@
+apiVersion: argoproj.io/v1alpha1 # Specifies the API version for the ArgoCD Application CRD
+kind: Application               # Declares this resource as an ArgoCD Application
+metadata:
+  name: auto-image-git-updater-app                # Name of the ArgoCD Application
+  namespace: argocd             # Namespace where the Application resource will be created
+  annotations:
+    # Assign alias 'chai-app' to your image
+    argocd-image-updater.argoproj.io/image-list: rj-app=rj1608/ui-approach # Maps the image alias 'chai-app' to your DockerHub image
+
+    # Use git write-back
+    argocd-image-updater.argoproj.io/write-back-method: git:secret:argocd/argocd-image-updater-git-creds # Configures image updater to write changes back to Git using provided secret
+
+    # Update strategy for chai-app image
+    argocd-image-updater.argoproj.io/rj-app.update-strategy: semver # Uses semantic versioning for image updates
+
+spec:
+  project: default              # Associates this Application with the 'default' ArgoCD project
+  source:
+    repoURL: https://github.com/ritikjain16/Argo-CD-Practice.git # Git repository containing the app manifests
+    targetRevision: master        # Branch or tag to track in the repository
+    path: 04_image_updater/image_updater_app/k8s # Path within the repo where the manifests(kustomization) are located
+  destination:
+    server: https://EA8AC60792985022739F9A6D1EBC7715.gr7.us-west-2.eks.amazonaws.com   # Target cluster API
+    # namespace: default           # Namespace in which to deploy the app
+  syncPolicy:                      # Defines how ArgoCD syncs the app
+    automated:                     # Enable auto-sync
+      prune: true                  # Delete resources removed from Git
+      selfHeal: true               # Fix drift if resources are changed manually
+    syncOptions:                   # Additional sync options
+      - CreateNamespace=true       # Auto-create namespace if it doesn't exist
+
+# Brief: This ArgoCD Application manifest configures automated deployment and image updates for the 'chai-app' using ArgoCD Image Updater, with changes written back to Git.
